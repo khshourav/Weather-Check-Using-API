@@ -61,25 +61,37 @@ fetch(url)
     
 
     // Sun Rise
-    let rise = parseInt(data.sys.sunrise);
+    let rise = parseInt(data.sys.sunrise)+timeZone;
     let Rise = new Date(rise * 1000);
     // document.getElementById('sunRise').innerHTML = Rise;
 
     let formattedRise = Rise.toLocaleString("en-GB", {
       timeZone: "UTC",
-      hour12: false,
+      hour12: true,
     });
-    document.getElementById("sunRise").innerHTML = formattedRise + " (UTC)";
+    if(time>0){
+        document.getElementById("sunRise").innerHTML = formattedRise + " (UTC +"+time+")";
+    }
+    else{
+        document.getElementById("sunRise").innerHTML = formattedRise + " (UTC "+time+")";
+    }
+    
 
     // Sun Set
-    let set = parseInt(data.sys.sunset);
+    let set = parseInt(data.sys.sunset)+timeZone;
     let Set = new Date(set * 1000);
     // document.getElementById('sunSet').innerHTML = Set;
     let formattedSet = Set.toLocaleString("en-GB", {
       timeZone: "UTC",
-      hour12: false,
+      hour12: true,
     });
-    document.getElementById("sunSet").innerHTML = formattedSet + " (UTC)";
+    if(time>0){
+        document.getElementById("sunSet").innerHTML = formattedSet + " (UTC +"+time+")";
+    }
+    else{
+        document.getElementById("sunSet").innerHTML = formattedSet + " (UTC "+time+")";
+    }
+    
   });
 
 }
